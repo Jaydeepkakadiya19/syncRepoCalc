@@ -607,9 +607,9 @@ begin
 			oflow<=check_for_overflow(bintbcd);
 			temps<=bintbcd(31 downto 0);
 			sinout<=sign;
-			bcdout<=temps;
+			--bcdout<=temps;
 			rs<=check_for_shifting(temps,fp);
-
+			bcdout<=rs;
 
 
 end Behavioral;
