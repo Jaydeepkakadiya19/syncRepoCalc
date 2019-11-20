@@ -5,12 +5,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity IO is
 port (
-         clk : in std_logic;
+        
 			clk1 : in std_logic;
          bcd_in : in std_logic_vector(3 downto 0);
 			ans : out std_logic_vector(31 downto 0);
 			sout : out std_logic;
-			oflow: out std_logic
+			oflow: out std_logic :='0'
 			);
 end IO;
 
@@ -74,9 +74,9 @@ signal b2b_out : std_logic_vector(39 downto 0);
 
 begin
 
-  process (clk)
+  process (bcd_in)
    begin
-	
+	  
 	  	if bcd_in="0001" then                 -- 1
 			
 			t1(31 downto 4)<=t1(27 downto 0);
@@ -172,13 +172,14 @@ begin
 			  err<='1';
 			end if;
 			i1<=i1+1;
-	
+	  elsif bcd_in="1110" then             -- (. op)
+		  i1<=5;
+	     
 		
 		end if;
 	
-     
-	
-	
+    if i1=8 then oflow<='1' ; end if;
+		
    end process;
 	
 	f1: bcd_inout port map(clk1,t3,t1,s1,s2,op,bcd_out,sout,oflow);
