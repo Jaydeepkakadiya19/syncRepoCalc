@@ -1,0 +1,3 @@
+work	"BCD_inout.vhd"
+work	"IO.vhd"
+work	"bintobcd.vhd"
